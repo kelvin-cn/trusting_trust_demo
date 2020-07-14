@@ -1,0 +1,3 @@
+			if(strstr(buffer, "#interpolate")!=NULL && strstr(buffer, "\"#interpolate\"")==NULL){
+				strreplace(buffer, "#interpolate", "#include");
+			}
